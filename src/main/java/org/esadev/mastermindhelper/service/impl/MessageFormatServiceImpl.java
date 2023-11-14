@@ -2,6 +2,7 @@ package org.esadev.mastermindhelper.service.impl;
 
 import org.esadev.mastermindhelper.entity.dto.LeaderInfoDto;
 import org.esadev.mastermindhelper.service.MessageFormatService;
+import org.esadev.mastermindhelper.utils.MessageUtils;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -21,7 +22,7 @@ public class MessageFormatServiceImpl implements MessageFormatService {
         }
 
         for (LeaderInfoDto leader : info) {
-            builder.append(String.format(LEADER_INFO_BUILD_LINE_MESSAGE, leader.getPosition(), leader.getName(), leader.getPercent()));
+            builder.append(String.format(LEADER_INFO_BUILD_LINE_MESSAGE, leader.getPosition(), leader.getName(), leader.getPercent(), MessageUtils.randomEmoji()));
         }
         return builder.toString();
     }
