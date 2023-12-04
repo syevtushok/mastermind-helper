@@ -22,7 +22,7 @@ public class MessageFormatServiceImpl implements MessageFormatService {
         }
 
         for (LeaderInfoDto leader : info) {
-            if (!leader.getPercent().equals("0,00%")) {
+            if (!leader.getPercent().equals(NO_DATA)) {
                 builder.append(String.format(LEADER_INFO_BUILD_LINE_MESSAGE, leader.getPosition(),
                     leader.getName(), leader.getPercent(), MessageUtils.randomEmoji()));
             }
