@@ -22,7 +22,10 @@ public class MessageFormatServiceImpl implements MessageFormatService {
         }
 
         for (LeaderInfoDto leader : info) {
-            builder.append(String.format(LEADER_INFO_BUILD_LINE_MESSAGE, leader.getPosition(), leader.getName(), leader.getPercent(), MessageUtils.randomEmoji()));
+            if (!leader.getPercent().equals(NO_DATA)) {
+                builder.append(String.format(LEADER_INFO_BUILD_LINE_MESSAGE, leader.getPosition(),
+                    leader.getName(), leader.getPercent(), MessageUtils.randomEmoji()));
+            }
         }
         return builder.toString();
     }
