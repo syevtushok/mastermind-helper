@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.esadev.mastermindhelper.consts.Constants.LEADERS_RANGE;
+import static org.esadev.mastermindhelper.consts.Constants.NO_DATA;
 
 @Service
 @RequiredArgsConstructor
@@ -40,11 +41,15 @@ public class SheetServiceImpl implements SheetService {
 
     private List<LeaderInfoDto> getLeadersInfo(List<List<Object>> values) {
         List<LeaderInfoDto> leaderInfoDtos = new ArrayList<>();
-        for (int i = 0; i < values.size(); i++) {
-            List<Object> row = values.get(i);
-            LeaderInfoDto leaderInfoDto = LeaderInfoDto.builder().position(i + 1).name(row.get(0).toString().trim()).percent(row.get(1).toString().trim()).build();
-            leaderInfoDtos.add(leaderInfoDto);
+        int position = 1;
+        for (List<Object> row : values) {
+        String percent = row.get(1).toString().trim();
+        if (!percent.equals(NO_DATA)) {
+          LeaderInfoDto leaderInfoDto = LeaderInfoDto.builder().position(position++)
+              .name(row.get(0).toString().trim()).percent(percent).build();
+          leaderInfoDtos.add(leaderInfoDto);
         }
+      }
         return leaderInfoDtos;
     }
 }
