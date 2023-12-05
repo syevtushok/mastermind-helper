@@ -20,7 +20,7 @@ public class TelegramConfig {
         try {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(mastermindHelperBot);
-        } catch (TelegramApiException _) {
+        } catch (TelegramApiException e) {
         }
         return mastermindHelperBot;
     }

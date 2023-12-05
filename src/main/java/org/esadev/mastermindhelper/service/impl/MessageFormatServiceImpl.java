@@ -21,10 +21,9 @@ public class MessageFormatServiceImpl implements MessageFormatService {
             return builder.toString();
         }
 
-        for (LeaderInfoDto leader : info) {
-                builder.append(String.format(LEADER_INFO_BUILD_LINE_MESSAGE, leader.getPosition(),
-                    leader.getName(), leader.getPercent(), MessageUtils.randomEmoji()));
-        }
+        info.stream()
+                .map(leader -> String.format(LEADER_INFO_BUILD_LINE_MESSAGE, leader.getPosition(), leader.getName(), leader.getPercent(), MessageUtils.randomEmoji()))
+                .forEach(builder::append);
         return builder.toString();
     }
 }

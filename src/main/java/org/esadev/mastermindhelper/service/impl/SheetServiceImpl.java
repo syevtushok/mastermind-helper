@@ -42,13 +42,16 @@ public class SheetServiceImpl implements SheetService {
     private List<LeaderInfoDto> getLeadersInfo(List<List<Object>> values) {
         List<LeaderInfoDto> leaderInfoDtos = new ArrayList<>();
         int position = 1;
-        for (List<Object> row : values) {
-        String percent = row.get(1).toString().trim();
-        if (!percent.equals(NO_DATA)) {
-          LeaderInfoDto leaderInfoDto = LeaderInfoDto.builder().position(position++)
-              .name(row.get(0).toString().trim()).percent(percent).build();
-          leaderInfoDtos.add(leaderInfoDto);
-        }
+        for (var row : values) {
+            String percent = row.get(1).toString().trim();
+            if (!percent.equals(NO_DATA)) {
+                LeaderInfoDto leaderInfoDto = LeaderInfoDto.builder()
+                        .position(position++)
+                        .name(row.getFirst().toString().trim())
+                        .percent(percent)
+                        .build();
+                leaderInfoDtos.add(leaderInfoDto);
+            }
       }
         return leaderInfoDtos;
     }
