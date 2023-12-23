@@ -35,10 +35,6 @@ public class ScheduleNotifications {
 
   @Scheduled(cron = SEND_DAILY_TASK)
   public void sendDailyTask() throws TelegramApiException {
-    if (LocalDate.now().isEqual(LocalDate.of(2023, 12, 11))) {
-      telegramSender.sendMessage(dailyTaskService.startOfSurprise());
-    }
-
     if (LocalDate.now().isBefore(LocalDate.of(2024, 1, 1))) {
       var task = dailyTaskService.choose();
       if (task != null) {
