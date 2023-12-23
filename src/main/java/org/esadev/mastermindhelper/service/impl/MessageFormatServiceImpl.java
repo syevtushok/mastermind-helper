@@ -22,7 +22,7 @@ public class MessageFormatServiceImpl implements MessageFormatService {
         }
 
         info.stream()
-                .map(leader -> String.format(LEADER_INFO_BUILD_LINE_MESSAGE, leader.getPosition(), leader.getName(), leader.getPercent(), MessageUtils.randomEmoji()))
+                .map(leader -> String.format(LEADER_INFO_BUILD_LINE_MESSAGE, leader.getPosition(), leader.getName(), leader.getPercent(), MessageUtils.leaderEmoji(leader.getPosition())))
                 .forEach(builder::append);
         return builder.toString();
     }
